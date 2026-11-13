@@ -3,7 +3,7 @@
 Run from the repository root with:  streamlit run project/app.py
 """
 
-import streamlit as st
+import streamlit as st  # pyright: ignore[reportMissingImports]
 
 import carbon
 
