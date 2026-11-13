@@ -23,3 +23,4 @@ def simulate(Mi: float, F: float, k: float, t_end: float, dt: float) -> tuple[li
 
 def findrate(F: float, k: float, M: float) -> float:
     return F - (k * M)
+

@@ -44,11 +44,11 @@ time, solving the model's equations step by step. It will run as a web app.
 | Step | Status |
 | --- | --- |
 | 1. One ocean carbon reservoir with a steady volcanic source and burial | Done |
-| 2. Automated checks (exact solution, time step) | Next |
+| 2. Automated checks (exact solution, time step) | In progress: exact-solution check done |
 | 3. Carbon isotopes (δ13C) | Not started |
 | 4. Microbial source, limited by nickel | Not started |
 | 5. Compare volcanoes alone, microbes alone, and both | Not started |
-| 6. Plots and web app | Not started |
+| 6. Plots and web app | In progress: sliders and plots for the steady volcanic source |
 | 7. Nickel → microbe → carbon chain | Not started |
 
 The current model is:
@@ -72,11 +72,34 @@ Units are arbitrary for now.
 | --- | --- |
 | `carbon.py` | The model. `findrate` gives dM/dt, `simulate` steps the model forward with Euler's method, and `exact_solution` gives the exact answer for checking. |
 | `main.py` | Runs one example and prints the exact and simulated carbon at t = 10. |
+| `app.py` | The web app. Sliders set `Mi`, `k`, `F`, the run length and the time step, a checkbox turns volcanoes off, and plots show carbon (simulated and exact) and its growth rate over time. |
+| `requirements.txt` | Python packages the app needs (Streamlit). |
+| `test_carbon.py` | Checks. `test_matches_exact_solution` runs `simulate` to t = 10 and fails if any step is more than 0.001 from `exact_solution`. |
 
 ## Running it
 
-Requires Python 3.9 or later. No other packages are needed. From the repository
-root:
+Requires Python 3.9 or later.
+
+### The web app
+
+The app needs Streamlit. From the repository root, set it up once:
+
+```
+python3 -m venv .venv
+.venv/bin/pip install -r project/requirements.txt
+```
+
+Then start the app:
+
+```
+.venv/bin/streamlit run project/app.py
+```
+
+It opens in your browser at http://localhost:8501.
+
+### Without the app
+
+`main.py` and the checks need no extra packages. From the repository root:
 
 ```
 python3 project/main.py
@@ -88,6 +111,12 @@ carbon at t = 10, then the simulated value:
 ```
 3.5284822353142307
 3.5292183009161437
+```
+
+To run the checks:
+
+```
+python3 project/test_carbon.py
 ```
 
 ## How it is checked
