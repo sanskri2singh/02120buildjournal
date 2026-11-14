@@ -7,6 +7,7 @@ Code and Claude Code session logs for 02-120.
 | Path | What's in it |
 | --- | --- |
 | `project/` | Python code for the course project |
+| `sources/` | Papers the project is based on (Rothman et al. 2014) |
 | `journal/` | Claude Code session logs (`.jsonl`), one file per session |
 | `.claude/` | Claude Code settings and the hook that saves the session logs |
 
