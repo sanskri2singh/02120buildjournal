@@ -52,4 +52,7 @@ if __name__ == "__main__":
 
     steps = test_growth_slows()
     print(f"passed: growth slowed down at every one of {steps} steps")
+
+    mixed = test_mix_by_hand()
+    print(f"passed: mixing gives {mixed} per mil")
     
