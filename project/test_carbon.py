@@ -37,6 +37,11 @@ def test_growth_slows() -> int:
         assert increases[i] < increases[i - 1], f"growth sped up at step {i}"
     return len(increases)
 
+def test_mix_by_hand() -> float:
+    c = carbon.mix(1.0, 0.0, 0.1, -28.0)
+    diff = abs(c - (-28 * 0.1 / 1.1))
+    assert diff <= 0.001
+    return c
 
 if __name__ == "__main__":
     biggest = test_matches_exact_solution()

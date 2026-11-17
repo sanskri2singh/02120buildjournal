@@ -91,7 +91,7 @@ time, solving the model's equations step by step. It will run as a web app.
 | --- | --- |
 | 1. One ocean carbon reservoir with a steady volcanic source and burial | Done |
 | 2. Automated checks (exact solution, time step, growth slows) | Done |
-| 3. Carbon isotopes (δ13C) | Not started |
+| 3. Carbon isotopes (δ13C) | In progress: `mix` done and checked by hand |
 | 4. Microbial source (Rothman's Eq. 5), with nickel setting how fast the microbes speed up | Not started |
 | 5. Compare volcanoes alone, microbes alone, and both | Not started |
 | 6. Plots and web app | In progress: sliders and plots for the steady volcanic source |
@@ -116,11 +116,11 @@ Units are arbitrary for now.
 
 | File | What it does |
 | --- | --- |
-| `carbon.py` | The model. `findrate` gives dM/dt, `simulate` steps the model forward with Euler's method, and `exact_solution` gives the exact answer for checking. |
+| `carbon.py` | The model. `findrate` gives dM/dt, `simulate` steps the model forward with Euler's method, and `exact_solution` gives the exact answer for checking. `mix` gives the δ13C of two batches of carbon combined, as an amount-weighted average. |
 | `main.py` | Runs one example and prints the exact and simulated carbon at t = 10. |
 | `app.py` | The web app. Sliders set `Mi`, `k`, `F`, the run length and the time step, a checkbox turns volcanoes off, and plots show carbon (simulated and exact) and its growth rate over time. |
 | `requirements.txt` | Python packages the app needs (Streamlit). |
-| `test_carbon.py` | Checks. `test_matches_exact_solution` fails if any step of `simulate` is more than 0.001 from `exact_solution`. `test_halving_dt` fails if halving the time step changes the final carbon by 0.001 or more. `test_growth_slows` fails unless, with a steady source, carbon rises at every step and each increase is smaller than the last. |
+| `test_carbon.py` | Checks. `test_matches_exact_solution` fails if any step of `simulate` is more than 0.001 from `exact_solution`. `test_halving_dt` fails if halving the time step changes the final carbon by 0.001 or more. `test_growth_slows` fails unless, with a steady source, carbon rises at every step and each increase is smaller than the last. `test_mix_by_hand` fails unless adding 10% carbon at −28‰ to an ocean at 0‰ gives −2.8/1.1, about −2.55‰. |
 
 ## Running it
 

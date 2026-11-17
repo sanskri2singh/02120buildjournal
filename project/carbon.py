@@ -24,3 +24,6 @@ def simulate(Mi: float, F: float, k: float, t_end: float, dt: float) -> tuple[li
 def findrate(F: float, k: float, M: float) -> float:
     return F - (k * M)
 
+def mix(M_ocean: float, d_ocean: float, M_added: float, d_added: float) -> float:
+    return ((M_ocean * d_ocean) + (M_added * d_added)) / (M_ocean + M_added)
+
