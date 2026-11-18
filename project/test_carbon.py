@@ -2,7 +2,7 @@ import carbon
 
 def test_matches_exact_solution() -> float:
     Mi, F, k = 1.0, 0.5, 0.1
-    times, carbonamounts = carbon.simulate(Mi, F, k, 10, 0.01)
+    times, carbonamounts, _ = carbon.simulate(Mi, F, k, 10, 0.01)
 
     difference = 0.0
     for t, M in zip(times, carbonamounts):
@@ -15,8 +15,8 @@ def test_matches_exact_solution() -> float:
 
 def test_halving_dt() -> float:
     Mi, F, k = 1.0, 0.5, 0.1
-    _, coarse = carbon.simulate(Mi, F, k, 10, 0.01)
-    _, fine = carbon.simulate(Mi, F, k, 10, 0.005)
+    _, coarse, _ = carbon.simulate(Mi, F, k, 10, 0.01)
+    _, fine, _ = carbon.simulate(Mi, F, k, 10, 0.005)
 
     change = abs(coarse[-1] - fine[-1])
 
@@ -26,7 +26,7 @@ def test_halving_dt() -> float:
 
 def test_growth_slows() -> int:
     Mi, F, k = 1.0, 0.5, 0.1
-    _, carbonamounts = carbon.simulate(Mi, F, k, 50, 0.01)
+    _, carbonamounts, _ = carbon.simulate(Mi, F, k, 50, 0.01)
 
     increases = []
     for i in range(1, len(carbonamounts)):
